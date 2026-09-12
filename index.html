@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoCAVM — Aurahua</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo" onclick="navegar('inicio')">
+    <img src="logo.png" class="logo-mark" alt="Logo EcoCAVM">
+    EcoCAVM
+  </div>
+
+  <nav class="nav-links">
+    <button class="nav-item active" id="link-inicio" onclick="navegar('inicio')">Inicio</button>
+    <button class="nav-item" id="link-ofertas" onclick="navegar('ofertas')">Explorar Ofertas</button>
+    <button class="nav-item" id="link-impacto" onclick="navegar('impacto')">Impacto</button>
+  </nav>
+
+  <button class="btn-primary" onclick="abrirModal()">+ Registrar Negocio</button>
+</header>
+
+<main>
+
+  <!-- INICIO -->
+  <section id="sec-inicio" class="seccion-pantalla active" style="position:relative; overflow:hidden;">
+    <video autoplay muted loop playsinline class="video-fondo-hero">
+      <source src="fondo-hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero" style="position:relative; z-index:2;">
+      <span class="badge">🌱 Innovación para Crea y Emprende — Aurahua</span>
+      <h1>Reduce el desperdicio. <span class="highlight">Impulsa tu comunidad.</span></h1>
+
+      <div class="mark-wrap">
+        <div class="mark-ring"></div>
+        <div class="mark-core"><img src="logo.png" alt="Logo EcoCAVM" style="width:100%; height:100%; border-radius:50%; object-fit:cover;"></div>
+      </div>
+
+      <p>Conectamos comercios locales con vecinos para comercializar excedentes a mitad de precio o realizar trueques sostenibles, en tiempo real.</p>
+
+      <div class="hero-btns">
+        <button class="btn-primary-lg" onclick="navegar('ofertas')"><i class="fa-solid fa-map-location-dot"></i> Ver Mapa de Ofertas</button>
+        <button class="btn-secondary-lg" onclick="navegar('ofertas'); abrirModal();">+ Publicar Oferta</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><h2>+150 kg</h2><p>Alimentos Rescatados</p></div>
+        <div class="stat-card"><h2>10% OFF</h2><p>Ahorro Promedio</p></div>
+        <div class="stat-card"><h2>100%</h2><p>Ecológico y Local</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTAS -->
+  <section id="sec-ofertas" class="seccion-pantalla">
+    <div class="container-ofertas">
+      <h2>Ofertas y trueques cerca de ti</h2>
+      <p class="sub">Explora el mapa o la lista y reserva con tu código QR.</p>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filtrarProductos('todos', this)">Todos</button>
+        <button class="filter-btn" onclick="filtrarProductos('oferta', this)">Ofertas</button>
+        <button class="filter-btn" onclick="filtrarProductos('trueque', this)">Trueques</button>
+        <button class="filter-btn" style="margin-left:auto;" onclick="abrirModal()">+ Publicar oferta</button>
+      </div>
+
+      <div class="main-layout">
+        <div id="map"></div>
+        <div class="grid-productos" id="product-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACTO -->
+  <section id="sec-impacto" class="seccion-pantalla">
+    <div class="container-impacto">
+      <h2>Nuestro impacto en Aurahua</h2>
+      <p class="sub-title">Cada oferta publicada evita que un alimento termine en la basura.</p>
+
+      <div class="cards-impacto">
+        <div class="card-imp">
+          <div class="icon-imp"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Menos desperdicio</h3>
+          <p>Los comercios dan salida a sus excedentes antes de que se pierdan, reduciendo la basura orgánica del distrito.</p>
+        </div>
+        <div class="card-imp">
+          <div class="icon-imp"><i class="fa-solid fa-sack-dollar"></i></div>
+          <h3>Ahorro familiar</h3>
+          <p>Las familias acceden a productos frescos a mitad de precio, aliviando el gasto semanal del hogar.</p>
+        </div>
+        <div class="card-imp">
+          <div class="icon-imp"><i class="fa-solid fa-people-group"></i></div>
+          <h3>Economía circular</h3>
+          <p>El trueque entre vecinos fortalece la confianza y mantiene el intercambio dentro de la comunidad.</p>
+        </div>
+      </div>
+
+      <div class="autores-proyecto" style="margin-top:50px; padding-top:30px; border-top:1px solid var(--linea, #e0dbd3); text-align:center;">
+        <h3 style="margin-bottom:6px;">Equipo del proyecto</h3>
+        <p style="color:#6b625a; margin-bottom:20px;">Crea y Emprende — Aurahua</p>
+        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:12px 28px;">
+          <li style="font-weight:600; color:#3a3229;">*Analu Ariana Medina Soto</li>
+          <li style="font-weight:600; color:#3a3229;">*Etefani Maribel Meza Pablo</li>
+          <li style="font-weight:600; color:#3a3229;">*Genesis Valdez Estalla</li>
+          <li style="font-weight:600; color:#3a3229;">*Maryory Ketlen Chumpate Yalle</li>
+          <li style="font-weight:600; color:#3a3229;">*Nicol Andrea Machuca Leandro</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL REGISTRO -->
+<div class="modal" id="modal-registro">
+  <div class="modal-content">
+    <button class="close-btn" onclick="cerrarModal()">&times;</button>
+
+    <div id="paso-datos">
+      <h3>Publicar oferta o trueque</h3>
+      <p>Completa los datos de tu negocio o producto.</p>
+
+      <form id="form-registro" onsubmit="irAPago(event)">
+        <div class="form-group">
+          <label for="reg-titulo">Título del producto</label>
+          <input type="text" id="reg-titulo" placeholder="Ej. Caja de duraznos" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-negocio">Nombre del negocio</label>
+          <input type="text" id="reg-negocio" placeholder="Ej. Frutería Don Pedro" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-telefono">WhatsApp del negocio</label>
+          <input type="tel" id="reg-telefono" placeholder="Ej. 987654321" pattern="[0-9]{9}" maxlength="9" required>
+          <small style="color:#8a8177; display:block; margin-top:4px;">Los compradores te escribirán aquí al reservar.</small>
+        </div>
+        <div class="form-group">
+          <label for="reg-tipo">Tipo</label>
+          <select id="reg-tipo" required>
+            <option value="oferta">Oferta</option>
+            <option value="trueque">Trueque</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reg-original">Precio original / qué ofreces</label>
+          <input type="text" id="reg-original" placeholder="Ej. S/ 20.00" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-oferta">Precio oferta / qué buscas</label>
+          <input type="text" id="reg-oferta" placeholder="Ej. S/ 10.00" required>
+        </div>
+        <button type="submit" class="btn-submit">Continuar al pago</button>
+      </form>
+    </div>
+
+    <div id="paso-pago" style="display:none;">
+      <h3>Publicación con Yape</h3>
+      <p>Escanea el código, paga <strong>S/ 2.00</strong> y confirma abajo.</p>
+
+      <img src="yape-qr.jpg" alt="QR de Yape" style="width:180px; height:180px; display:block; margin:14px auto; border-radius:12px; border:1px solid var(--linea); object-fit:contain;">
+
+      <form id="form-pago" onsubmit="confirmarPago(event)">
+        <div class="form-group">
+          <label for="pago-operacion">Número de operación de Yape</label>
+          <input type="text" id="pago-operacion" placeholder="Ej. 000123456" required>
+        </div>
+        <button type="submit" class="btn-submit">Confirmar pago y publicar</button>
+        <button type="button" class="btn-secondary-lg" style="width:100%; margin-top:10px;" onclick="volverADatos()">Volver</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL RESERVA -->
+<div class="modal" id="modal-reserva">
+  <div class="modal-content" style="max-width:380px; text-align:center;">
+    <button class="close-btn" onclick="cerrarModalReserva()">&times;</button>
+
+    <div style="width:56px; height:56px; border-radius:50%; background:#e8f5e9; display:flex; align-items:center; justify-content:center; margin:0 auto 14px;">
+      <i class="fa-solid fa-check" style="color:#2e7d32; font-size:22px;"></i>
+    </div>
+
+    <h3 style="margin-bottom:4px;">¡Reserva exitosa!</h3>
+    <p style="color:#6b625a; margin-bottom:18px;">Coordina la entrega directamente con el negocio.</p>
+
+    <div style="background:#f7f4ef; border-radius:12px; padding:14px 16px; text-align:left; margin-bottom:18px;">
+      <p style="margin:0 0 6px;"><strong>Producto:</strong> <span id="reserva-producto"></span></p>
+      <p style="margin:0 0 6px;"><strong>Local:</strong> <span id="reserva-negocio"></span></p>
+      <p style="margin:0;"><strong>Código:</strong> <span id="reserva-codigo"></span></p>
+    </div>
+
+    <a id="btn-whatsapp-reserva" href="#" target="_blank" rel="noopener"
+       style="display:flex; align-items:center; justify-content:center; gap:8px; background:#25D366; color:#fff; text-decoration:none; padding:12px; border-radius:10px; font-weight:600; margin-bottom:10px;">
+      <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i> Contactar al vendedor
+    </a>
+
+    <button class="btn-secondary-lg" style="width:100%;" onclick="cerrarModalReserva()">Aceptar</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
