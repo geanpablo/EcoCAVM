@@ -310,7 +310,7 @@ h1, h2, h3 {
 
 .main-layout {
     display: grid;
-    grid-template-columns: 400px 1fr;
+    grid-template-columns: 360px 1fr;
     gap: 22px;
     align-items: start;
 }
@@ -326,38 +326,60 @@ h1, h2, h3 {
 
 .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 12px;
     align-content: start;
 }
 
+/* ===== TARJETAS CON FOTO COMPACTA Y ALINEADA ===== */
 .card {
     background: var(--crema-tarjeta);
-    padding: 16px;
+    padding: 10px 12px;
     border-radius: 12px;
     border: 1px solid var(--linea);
-    display: flex;
-    justify-content: space-between;
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.card-content {
+    flex: 1;
+    min-width: 0;
 }
 
 .card h4 {
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
-    margin: 6px 0 4px 0;
+    font-size: 0.95rem;
+    margin: 3px 0;
     color: var(--carbon);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card .negocio {
-    font-size: 0.83rem;
+    font-size: 0.8rem;
     color: var(--gris-texto);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card .precios {
-    margin-top: 8px;
-    font-size: 0.95rem;
+    margin-top: 4px;
+    font-size: 0.88rem;
 }
 
 .card .precios del {
@@ -367,15 +389,16 @@ h1, h2, h3 {
 
 .card .precios strong {
     color: var(--verde);
-    font-size: 1.05rem;
+    font-size: 0.98rem;
 }
 
 .badge-tag {
-    font-size: 0.68rem;
-    padding: 3px 9px;
-    border-radius: 5px;
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 4px;
     font-weight: 700;
     letter-spacing: 0.3px;
+    display: inline-block;
 }
 
 .badge-tag.oferta { background: #fbe4c8; color: var(--tierra-oscura); }
@@ -385,10 +408,10 @@ h1, h2, h3 {
     background: var(--carbon);
     color: white;
     border: none;
-    padding: 9px 14px;
+    padding: 8px 12px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -532,6 +555,78 @@ h1, h2, h3 {
 .btn-submit:hover {
     background: var(--tierra-oscura);
 }
+
+/* ===== MAPA MEJORADO ===== */
+
+/* Pines personalizados */
+.pin-eco {
+    background: transparent;
+    border: none;
+}
+.pin-eco-inner {
+    width: 32px;
+    height: 32px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,.35);
+    border: 2px solid #fff;
+}
+.pin-eco-inner i {
+    transform: rotate(45deg);
+    color: #fff;
+    font-size: 13px;
+}
+
+/* Popup del mapa */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    padding: 2px;
+}
+.popup-eco { min-width: 170px; }
+.popup-eco h4 { margin: 6px 0 3px 0; font-size: 0.95rem; }
+.popup-eco .negocio { font-size: 0.78rem; color: var(--gris-texto); margin-bottom: 4px; }
+.popup-eco .precios { font-size: 0.9rem; margin-bottom: 8px; }
+.popup-eco .precios del { color: #a89f92; margin-right: 5px; }
+.popup-eco .precios strong { color: var(--verde); }
+.btn-qr-popup {
+    width: 100%;
+    background: var(--carbon);
+    color: #fff;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    cursor: pointer;
+}
+.btn-qr-popup:hover { background: #000; }
+
+/* Botón "ubicarme" */
+.btn-locate {
+    background: var(--crema-tarjeta);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+    cursor: pointer;
+    color: var(--verde-oscuro);
+    font-size: 1rem;
+}
+.btn-locate:hover { background: #fff; }
+
+/* Recolorear los clusters al estilo EcoCAVM */
+.marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
+    background-color: rgba(60, 90, 69, 0.85) !important;
+}
+.marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+    background-color: rgba(60, 90, 69, 0.4) !important;
+}
+.marker-cluster div span { color: #fff !important; font-weight: 700; }
 
 @media (max-width: 780px) {
     .navbar { flex-wrap: wrap; gap: 10px; padding: 1rem 5%; }

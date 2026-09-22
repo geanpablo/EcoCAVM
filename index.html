@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 </head>
 <body>
 
@@ -100,18 +102,42 @@
         </div>
       </div>
 
-      <div class="autores-proyecto" style="margin-top:50px; padding-top:30px; border-top:1px solid var(--linea, #e0dbd3); text-align:center;">
-        <h3 style="margin-bottom:6px;">Equipo del proyecto</h3>
-        <p style="color:#6b625a; margin-bottom:20px;">Crea y Emprende — Aurahua</p>
-        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:12px 28px;">
-          <li style="font-weight:600; color:#3a3229;">*Analu Ariana Medina Soto</li>
-          <li style="font-weight:600; color:#3a3229;">*Etefani Maribel Meza Pablo</li>
-          <li style="font-weight:600; color:#3a3229;">*Genesis Valdez Estalla</li>
-          <li style="font-weight:600; color:#3a3229;">*Maryory Ketlen Chumpate Yalle</li>
-          <li style="font-weight:600; color:#3a3229;">*Nicol Andrea Machuca Leandro</li>
-        </ul>
-      </div>
+
+      
+ <div class="autores-proyecto" style="margin-top:50px; padding-top:30px; border-top:1px solid var(--linea, #e0dbd3);">
+  <h3 style="margin-bottom:6px; text-align:left;">Equipo del proyecto</h3>
+  <p style="color:#6b625a; margin-bottom:20px; text-align:left;">Crea y Emprende — Aurahua</p>
+
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:30px; flex-wrap:wrap;">
+    
+    <ol style="padding-left:20px; margin:0; text-align:left; display:flex; flex-direction:column; gap:12px; flex:1; min-width:260px;">
+      <li style="font-weight:600; color:#3a3229; text-align:left;">
+        Genesis Valdez Estalla <span style="font-weight:400; color:#6b625a;">(gerente general)</span>
+      </li>
+      <li style="font-weight:600; color:#3a3229; text-align:left;">
+        Maryory Ketlen Chumpate Yalle <span style="font-weight:400; color:#6b625a;">(gerente finanzas)</span>
+      </li>
+      <li style="font-weight:600; color:#3a3229; text-align:left;">
+        Analu Ariana Medina Soto <span style="font-weight:400; color:#6b625a;">(gerente logística)</span>
+      </li>
+      <li style="font-weight:600; color:#3a3229; text-align:left;">
+        Nicol Andrea Machuca Leandro <span style="font-weight:400; color:#6b625a;">(gerente marketing)</span>
+      </li>
+      <li style="font-weight:600; color:#3a3229; text-align:left;">
+        Etefany Maribel Meza Pablo <span style="font-weight:400; color:#6b625a;">(gerente administración)</span>
+      </li>
+    </ol>
+
+    <div style="flex:1; min-width:280px; max-width:450px;">
+      <img src="equipo.jpg" alt="Foto del equipo EcoCAVM" style="width:100%; height:auto; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); object-fit:cover;">
     </div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+</div>
   </section>
 
 </main>
@@ -136,7 +162,7 @@
         </div>
         <div class="form-group">
           <label for="reg-telefono">WhatsApp del negocio</label>
-          <input type="tel" id="reg-telefono" placeholder="Ej. 987654321" pattern="[0-9]{9}" maxlength="9" required>
+          <input type="tel" id="reg-telefono" placeholder="Ej. 920305486" pattern="[0-9]{9}" maxlength="9" required>
           <small style="color:#8a8177; display:block; margin-top:4px;">Los compradores te escribirán aquí al reservar.</small>
         </div>
         <div class="form-group">
@@ -205,6 +231,7 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
